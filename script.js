@@ -1,46 +1,69 @@
-let numpad = document.querySelectorAll('.num');
-let operators = document.querySelectorAll('.op')
-let display = document.querySelector('#display')
-let val = [];
-let lastVal;
-let currentVal;
+let buttons = document.querySelectorAll('button');
+let display = document.querySelector('#display');
+let input = [];
+let showVal = 0;
+let memVal;
+let result;
 let operator;
 
 const operations = {
     '+': (a,b) => a + b,
     '-': (a,b) => a - b,
     'x': (a,b) => a * b,
-    '/': (a,b) => a / b,
+    '/': (a,b) => (a / b),
 };
 
-numpad.forEach((button) => 
-    button.addEventListener('click', () => {
-        val.length != 8 ? val.push(button.textContent) : console.log('full');
-        currentVal = +val.join('');
-        display.textContent = currentVal;
-}));
-
-operators.forEach((button) => 
-    button.addEventListener('click', () => {
-        val = [];
-        switch(button.textContent){
-            case '+' : 
-            case '-' : 
-            case 'x' :
-            case '/' : 
-                operator = button.textContent;
-                lastVal = currentVal;
-                display.textContent = lastVal;
+buttons.forEach((button) => button.addEventListener('click', () => {
+    console.log(button.textContent);
+    switch(button.textContent){
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case '0':
+            if (operator) memVal = showVal;
+            if (input.length < 10) input.push(button.textContent);
+            showVal = Number(input.join(''));
+            display.textContent = Number(showVal);
             break;
-            case '=' : 
-                display.textContent = operations[`${operator}`](lastVal, currentVal);
+        case '.':
+            if(!input.includes('.')) input.push(button.textContent); 
             break;
-            case 'C' : 
-                lastVal = 0; 
-                currentVal = 0;
-                operator = 0;
-                display.textContent = 0;
+        case '←':
+            input.pop();
+            showVal = +input.join('');
+            display.textContent = +showVal;
             break;
-        }
-    if(display.textContent == 'NaN') display.textContent =`FORBIDDEN KNOWLEDGE!`;
+        case '+':        
+        case '-':
+        case 'x':
+        case '/':
+            if (memVal && operator){
+                showVal = operations[operator](memVal, showVal);
+                display.textContent = showVal;
+                memVal = null;
+            }     
+            input = []
+            operator = button.textContent;
+            break;
+        case '=':
+            //incomplete
+            if (!memVal) memVal = showVal;
+            showVal = operations[operator](memVal, showVal);
+            display.textContent = showVal;
+            break;
+        case 'C':
+            input = [];
+            display.textContent = 0;
+            showVal = 0;
+            memVal = null;
+            operator = null;
+            break;
+    }
+    console.log(`showVal: ${showVal} | memVal: ${memVal} | operator: ${operator}`);
 }));
