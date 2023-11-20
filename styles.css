@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'Pocket Calculator';
+    src: url(pocket_calcuatlor_tt.ttf);
+}
+
+html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+body {
+    background-color: #010012;
+    background-image: url("caclulator\ hand.png");
+    background-repeat: no-repeat;
+    background-position:top;
+    background-attachment:local;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+   
+    margin-top: 275px;
+}
+
+main {
+    width: 113%;
+    height: 30%;
+    margin-left: 22%;
+    display: flex;
+    flex-direction: column;
+    align-items:end;
+    justify-content: start;
+    
+}
+
+#screen{
+    width: 165px;
+    margin-top: 3%;
+    margin-left: 5%;
+    font-family: 'Pocket Calculator', sans-serif;
+    opacity: 70%;
+    align-self: center;
+
+}
+
+#display {
+    font-size: 45px;
+    text-align: right;
+}
+
+#panel {
+    margin-top: 22%;
+    margin-left: 3%;
+    align-self: center;
+    /* border: solid 1px red; */
+    width: 220px;
+    height: 170px;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    
+    gap: 6px;
+    padding: 0px, 5px;
+}
+
+button {
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+#plus {
+    grid-column-start: 5;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    background-color: red;
+    
+}

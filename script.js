@@ -1,16 +1,16 @@
 let buttons = document.querySelectorAll('button');
 let display = document.querySelector('#display');
 let input = [];
-let showVal = 0;
-let memVal;
 let result;
-let operator;
+let a;
+let b;
+let op;
 
-const operations = {
-    '+': (a,b) => a + b,
-    '-': (a,b) => a - b,
-    'x': (a,b) => a * b,
-    '/': (a,b) => (a / b),
+const calculate = {
+    '+': (a, b) => a + b,
+    '-': (a, b) => a - b,
+    'x': (a, b) => a * b,
+    '/': (a, b) => (a / b),
 };
 
 buttons.forEach((button) => button.addEventListener('click', () => {
@@ -26,44 +26,48 @@ buttons.forEach((button) => button.addEventListener('click', () => {
         case '8':
         case '9':
         case '0':
-            if (operator) memVal = showVal;
-            if (input.length < 10) input.push(button.textContent);
-            showVal = Number(input.join(''));
-            display.textContent = Number(showVal);
+            if (input.length < 8) input.push(button.textContent);
+            b = +input.join('');
+            display.textContent = b;
             break;
         case '.':
             if(!input.includes('.')) input.push(button.textContent); 
             break;
         case '←':
             input.pop();
-            showVal = +input.join('');
-            display.textContent = +showVal;
+            display.textContent = +input.join('');
+            
             break;
         case '+':        
         case '-':
         case 'x':
         case '/':
-            if (memVal && operator){
-                showVal = operations[operator](memVal, showVal);
-                display.textContent = showVal;
-                memVal = null;
-            }     
-            input = []
-            operator = button.textContent;
+            if ((a != null) && (op != null) && (b != null)){
+                result = calculate[op](a, b);
+                display.textContent = result;
+                a = null;
+            } else if ( a == null ){
+                a = b;
+            } 
+            op = button.textContent;
+            input = [];
             break;
         case '=':
-            //incomplete
-            if (!memVal) memVal = showVal;
-            showVal = operations[operator](memVal, showVal);
-            display.textContent = showVal;
+            if (a == null) a = b;
+            result = calculate[op](a, b);
+            a = Math.round(result*10000000)/10000000;
+            isNaN(a) ? display.textContent = 'ERROR' : display.textContent = a;
+            input = [];
             break;
         case 'C':
             input = [];
             display.textContent = 0;
-            showVal = 0;
-            memVal = null;
-            operator = null;
+            a = null;
+            b = null;
+            op = null;
+            result = null;
             break;
     }
-    console.log(`showVal: ${showVal} | memVal: ${memVal} | operator: ${operator}`);
+    
+    console.log(`result: ${result} | a: ${a} | b: ${b} | op: ${op}`);
 }));
