@@ -50,7 +50,7 @@ main {
 }
 
 #panel {
-    margin-top: 22%;
+    margin-top: 23%;
     margin-left: 3%;
     align-self: center;
     /* border: solid 1px red; */
@@ -58,20 +58,30 @@ main {
     height: 170px;
     display: grid;
     grid-template-columns: repeat(5, auto);
-    
-    gap: 6px;
+    grid-auto-flow: dense;
+    row-gap: 6px;
+    column-gap: 4px;
     padding: 0px, 5px;
 }
 
 button {
+    background-color: black;
+    color:aliceblue;
     border-radius: 5px;
     font-size: 15px;
+    font-style: bold;
 }
 
 #plus {
     grid-column-start: 5;
     grid-row-start: 3;
     grid-row-end: 5;
-    background-color: red;
-    
+}
+
+#clear {
+    background-color: rgb(201, 6, 6);
+}
+
+.num {
+    background-color: rgb(75, 72, 72);
 }
