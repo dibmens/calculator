@@ -7,7 +7,6 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 body {
@@ -19,7 +18,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: stretch;
-   
     margin-top: 275px;
 }
 
@@ -31,7 +29,6 @@ main {
     flex-direction: column;
     align-items:end;
     justify-content: start;
-    
 }
 
 #screen{
@@ -41,7 +38,6 @@ main {
     font-family: 'Pocket Calculator', sans-serif;
     opacity: 70%;
     align-self: center;
-
 }
 
 #display {
@@ -53,7 +49,6 @@ main {
     margin-top: 23%;
     margin-left: 3%;
     align-self: center;
-    /* border: solid 1px red; */
     width: 220px;
     height: 170px;
     display: grid;
@@ -69,7 +64,7 @@ button {
     color:aliceblue;
     border-radius: 5px;
     font-size: 15px;
-    font-style: bold;
+    font-weight: bold;
 }
 
 #plus {
@@ -84,4 +79,8 @@ button {
 
 .num {
     background-color: rgb(75, 72, 72);
+}
+
+#arrow {
+    padding: 1px 4px;
 }

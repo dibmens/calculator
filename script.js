@@ -31,18 +31,21 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             b = +input.join('');
             display.textContent = b;
             break;
+
         case '.':
             if(!input.includes('.')) input.push(button.textContent); 
             break;
-        case '←':
+
+        case '⇦':
             input.pop();
             b = +input.join('');
             display.textContent = b;
             break;
+
         case '+':        
         case '-':
         case 'x':
-        case '/':
+        case '÷':
             if ((a != null) && (op != null) && (b != null) && (result == null)){
                 result = calculate[op](a, b);
                 display.textContent = result;
@@ -51,9 +54,11 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             } else if ( a == null && result == null){
                 a = +display.textContent;
             } 
+            b = +display.textContent;
             op = button.textContent;
             input = [];
             break;
+
         case '=':
             if (a == null) a = b;
             result = calculate[op](a, b);
@@ -61,6 +66,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             isNaN(a) ? display.textContent = 'ERROR' : display.textContent = a;
             input = [];
             break;
+            
         case 'C':
             input = [];
             display.textContent = 0;
@@ -71,5 +77,6 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             break;
     }
     
+    // debugging log
     console.log(`result: ${result} | a: ${a} | b: ${b} | op: ${op}`);
 }));
