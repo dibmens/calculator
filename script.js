@@ -10,11 +10,21 @@ const calculate = {
     '+': (a, b) => a + b,
     '-': (a, b) => a - b,
     'x': (a, b) => a * b,
-    '/': (a, b) => (a / b),
+    '÷': (a, b) => a / b,
 };
 
+document.addEventListener('keydown', (key) => {
+    buttons.forEach((button) =>  {
+        if (button.textContent == key.key) button.click();
+    });
+    if (key.key == 'Delete') buttons[4].click();
+    if (key.key == `/`) buttons[8].click();
+    if (key.key == 'Enter') buttons[9].click();
+    if (key.key == 'Backspace') buttons[16].click();
+    if (key.key == '*') buttons[13].click();
+});
+
 buttons.forEach((button) => button.addEventListener('click', () => {
-    console.log(button.textContent);
     switch(button.textContent){
         case '1':
         case '2':
@@ -77,6 +87,5 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             break;
     }
     
-    // debugging log
     console.log(`result: ${result} | a: ${a} | b: ${b} | op: ${op}`);
 }));
