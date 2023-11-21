@@ -26,6 +26,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
         case '8':
         case '9':
         case '0':
+            result = null;
             if (input.length < 8) input.push(button.textContent);
             b = +input.join('');
             display.textContent = b;
@@ -35,19 +36,20 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             break;
         case '←':
             input.pop();
-            display.textContent = +input.join('');
-            
+            b = +input.join('');
+            display.textContent = b;
             break;
         case '+':        
         case '-':
         case 'x':
         case '/':
-            if ((a != null) && (op != null) && (b != null)){
+            if ((a != null) && (op != null) && (b != null) && (result == null)){
                 result = calculate[op](a, b);
                 display.textContent = result;
-                a = null;
-            } else if ( a == null ){
-                a = b;
+                a = result;
+                
+            } else if ( a == null && result == null){
+                a = +display.textContent;
             } 
             op = button.textContent;
             input = [];
