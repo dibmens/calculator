@@ -41,17 +41,22 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             b = +input.join('');
             display.textContent = b;
             break;
-
         case '.':
             if(!input.includes('.')) input.push(button.textContent); 
             break;
-
         case '⇦':
             input.pop();
             b = +input.join('');
             display.textContent = b;
             break;
-
+        case '%':
+            if (op == '+' || op == '-'){
+                b = (a*b)/100;
+            } else {
+                b = b/100;
+            };
+            display.textContent = b;
+            break;    
         case '+':        
         case '-':
         case 'x':
@@ -68,7 +73,6 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             op = button.textContent;
             input = [];
             break;
-
         case '=':
             if (a == null) a = b;
             result = calculate[op](a, b);
@@ -76,7 +80,6 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             isNaN(a) ? display.textContent = 'ERROR' : display.textContent = a;
             input = [];
             break;
-            
         case 'C':
             input = [];
             display.textContent = 0;

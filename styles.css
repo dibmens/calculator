@@ -71,6 +71,7 @@ button {
     grid-column-start: 5;
     grid-row-start: 3;
     grid-row-end: 5;
+    border-bottom-right-radius: 30px 22%;
 }
 
 #clear {
