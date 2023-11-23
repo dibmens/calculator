@@ -11,9 +11,9 @@ html {
 
 body {
     background-color: #010012;
-    background-image: url("caclulator\ hand.png");
+    background-image: url(hand-calculator.png);
     background-repeat: no-repeat;
-    background-position:top;
+    background-position: top;
     background-attachment:local;
     display: flex;
     justify-content: center;

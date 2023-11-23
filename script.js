@@ -1,5 +1,5 @@
-let buttons = document.querySelectorAll('button');
-let display = document.querySelector('#display');
+const buttons = document.querySelectorAll('button');
+const display = document.querySelector('#display');
 let input = [];
 let result;
 let a;
@@ -13,15 +13,14 @@ const calculate = {
     '÷': (a, b) => a / b,
 };
 
-document.addEventListener('keydown', (key) => {
+document.addEventListener('keydown', (pressed) => {
     buttons.forEach((button) =>  {
-        if (button.textContent == key.key) button.click();
+        if (button.textContent == pressed.key) button.click();
     });
-    if (key.key == 'Delete') buttons[4].click();
-    if (key.key == `/`) buttons[8].click();
-    if (key.key == 'Enter') buttons[9].click();
-    if (key.key == 'Backspace') buttons[16].click();
-    if (key.key == '*') buttons[13].click();
+    if (pressed.key == 'Delete') buttons[4].click();
+    if (pressed.key == `/`) buttons[8].click();
+    if (pressed.key == 'Backspace') buttons[16].click();
+    if (pressed.key == '*') buttons[13].click();
 });
 
 buttons.forEach((button) => button.addEventListener('click', () => {
@@ -51,9 +50,9 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             break;
         case '%':
             if (op == '+' || op == '-'){
-                b = (a*b)/100;
+                b = Math.round(((a*b)/100)*10000000)/10000000
             } else {
-                b = b/100;
+                b = Math.round((b/100)*10000000)/10000000;
             };
             display.textContent = b;
             break;    
@@ -63,12 +62,17 @@ buttons.forEach((button) => button.addEventListener('click', () => {
         case '÷':
             if ((a != null) && (op != null) && (b != null) && (result == null)){
                 result = calculate[op](a, b);
-                display.textContent = result;
-                a = result;
-                
+                a = Math.round(result*10000000)/10000000;
+                if (isNaN(a)){
+                display.textContent = 'ERROR';
+                 } else if (a.toString().length > 8){
+                display.textContent = a.toExponential(2)
+                 } else {
+                display.textContent = a;
+                };
             } else if ( a == null && result == null){
                 a = +display.textContent;
-            } 
+            }; 
             b = +display.textContent;
             op = button.textContent;
             input = [];
@@ -77,7 +81,13 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             if (a == null) a = b;
             result = calculate[op](a, b);
             a = Math.round(result*10000000)/10000000;
-            isNaN(a) ? display.textContent = 'ERROR' : display.textContent = a;
+            if (isNaN(a)){
+                display.textContent = 'ERROR';
+            } else if (a.toString().length > 8){
+                display.textContent = a.toExponential(2)
+            } else {
+                display.textContent = a;
+            };
             input = [];
             break;
         case 'C':
@@ -88,7 +98,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             op = null;
             result = null;
             break;
-    }
+    };
     
     console.log(`result: ${result} | a: ${a} | b: ${b} | op: ${op}`);
 }));

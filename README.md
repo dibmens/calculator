@@ -1,10 +1,7 @@
 # calculator
-A simple calculator app made as a learning exercise. Make sure the background image is loaded properly for full experience.
+A simple calculator page made as a learning exercise. 
 
-------------------------------------------------------------------------------
-Acknowledgments: 
-------------------------------------------------------------------------------
+Make sure the background image is allowed to load properly for full experience. Most buttons correspond to their expected keyboard counterparts. Use 'Delete' key as Clear ('C') function. 
 
-Images have been created by Bing AI image generator at https://www.bing.com/create and hold no copyright.
-
-The display uses "Pocket Calculator" font design by Blue Vinyl, distributed as freeware on https://www.fontspace.com/pocket-calculator-font-f971.
+-Images have been created by Bing AI image generator at https://www.bing.com/create 
+-"Pocket Calculator" font design by Blue Vinyl, distributed as freeware at https://www.fontspace.com/pocket-calculator-font-f971.
